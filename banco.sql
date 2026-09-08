@@ -18,16 +18,14 @@ CREATE TABLE trens (
 DROP TABLE IF EXISTS leitura_sensor;
 
 CREATE TABLE leitura_sensor (
-    id_leitura            INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    fk_id_trem            INT UNSIGNED NOT NULL,
+    id_leitura            INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    fk_id_trem            INT NOT NULL,
     data_hora             DATETIME     NOT NULL,
     velocidade_kmh        DECIMAL(6,2) NOT NULL,
     temperatura_motor_c   DECIMAL(6,2) NOT NULL,
     consumo_litros_hora   DECIMAL(6,2) NOT NULL,
     vibracao_mm_s         DECIMAL(6,2) NOT NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT fk_leitura_trem FOREIGN KEY (fk_id_trem)
-        REFERENCES trens (id_trem)
+    FOREIGN KEY (fk_id_trem) REFERENCES trens (id_trem)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
